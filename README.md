@@ -1,6 +1,7 @@
 # PostgreSQL Telegram Backup Script
 
 Script for automated PostgreSQL database backups sent to Telegram.
+
 This script is forked from [nimah79/Telegram-MySQL-Backup](https://github.com/nimah79/Telegram-MySQL-Backup) and adapted for PostgreSQL.
 
 ## Description
@@ -10,6 +11,7 @@ Creates compressed dumps of PostgreSQL databases and sends them to Telegram via 
 ## Installation
 
 ### Prerequisites
+
 - PostgreSQL client tools (pg_dump, psql)
 - Bash
 - curl
@@ -18,31 +20,27 @@ Creates compressed dumps of PostgreSQL databases and sends them to Telegram via 
 ### Setup
 
 1. Make script executable:
-chmod +x Telegram-PostgreSQL-Backup.sh
 
-text
+`chmod +x Telegram-PostgreSQL-Backup.sh`
 
 2. Edit configuration in script:
-PG_USER=YOUR_POSTGRESQL_USERNAME
-PG_HOST=localhost
-PG_PORT=5432
-BOT_TOKEN=YOUR_TELEGRAM_BOT_TOKEN
-CHAT_ID=YOUR_CHAT_ID
 
-text
+`PG_USER=YOUR_POSTGRESQL_USERNAME`
+`PG_HOST=localhost`
+`PG_PORT=5432`
+`BOT_TOKEN=YOUR_TELEGRAM_BOT_TOKEN`
+`CHAT_ID=YOUR_CHAT_ID`
 
 ### Password Setup
 
 Create .pgpass file:
-echo "localhost:5432:*:username:password" > ~/.pgpass
-chmod 600 ~/.pgpass
 
-text
+`echo "localhost:5432:*:username:password" > ~/.pgpass`
+`chmod 600 ~/.pgpass`
 
 Or use environment variable:
-export PGPASSWORD=your_password
 
-text
+`export PGPASSWORD=your_password`
 
 ## Telegram Bot Setup
 
@@ -67,40 +65,34 @@ text
 ## Cron Schedule
 
 Add to crontab for daily backup at 2:00 AM:
-0 2 * * * /path/to/Telegram-PostgreSQL-Backup.sh
 
-text
+`0 2 * * * /path/to/Telegram-PostgreSQL-Backup.sh`
 
 ## Restore from Backup
 
 Restore single database:
-gunzip < backup_file.sql.gz | psql -U username -d database_name
 
-text
+`gunzip < backup_file.sql.gz | psql -U username -d database_name`
 
 Restore from split zip:
-cat backup.z01 backup.z02 backup.zip > combined.zip
-unzip combined.zip
-gunzip < backup.sql.gz | psql -U username -d database_name
 
-text
+`cat backup.z01 backup.z02 backup.zip > combined.zip`
+`unzip combined.zip`
+`gunzip < backup.sql.gz | psql -U username -d database_name`
 
 ## Troubleshooting
 
 Test PostgreSQL connection:
-psql -U username -h localhost -p 5432 -c "SELECT 1"
 
-text
+`psql -U username -h localhost -p 5432 -c "SELECT 1"`
 
 Test Telegram bot:
-curl https://api.telegram.org/bot<TOKEN>/getMe
 
-text
+`curl https://api.telegram.org/bot<TOKEN>/getMe`
 
 Check CHAT_ID:
-curl https://api.telegram.org/bot<TOKEN>/getUpdates
 
-text
+`curl https://api.telegram.org/bot<TOKEN>/getUpdates`
 
 ## License
 
