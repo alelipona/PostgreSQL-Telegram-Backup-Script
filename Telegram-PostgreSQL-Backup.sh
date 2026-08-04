@@ -1,14 +1,14 @@
 #!/bin/bash
 
 #==============================================================================
-#TITLE:            Telegram-PostgreSQL-Backup.sh
+#TITLE:            Telegram-PostgreSQL-Backup
 #DESCRIPTION:      Script for automating the daily PostgreSQL backups to Telegram
-#AUTHOR:           NimaH79 (adapted for PostgreSQL)
-#USAGE:            ./Telegram-PostgreSQL-Backup.sh
+#AUTHOR:           alelipona with DeepSeek (adapted for PostgreSQL)
+#USAGE:            ./backup.sh
 #CRON:
   # example cron for daily PostgreSQL backup @ 00:00
   # min hr mday month wday command
-  # 0   0  *    *     *    /path/to/Telegram-PostgreSQL-Backup.sh
+  # 0   0  *    *     *    /path/to/backup.sh
 
 #RESTORE FROM BACKUP
   #$ gunzip < [backupfile.sql.gz] | psql -U [uname] -d [dbname]
